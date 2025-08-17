@@ -6,16 +6,13 @@ from deepsmiles import Converter
 from deepchem.splits import ScaffoldSplitter
 from deepchem.data import NumpyDataset
 
-# ------------------------------
-# Step 1: Load BBBP CSV
-# ------------------------------
-raw_df = pd.read_csv("https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/BBBP.csv")
+# Step 1: Load Dataset 
+
+raw_df = pd.read_csv(" ")
 raw_df = raw_df.rename(columns={"p_np": "label"})
 
 
-# ------------------------------
 # Step 2: Filter invalid SMILES
-# ------------------------------
 def is_valid_smiles(smi):
     return Chem.MolFromSmiles(smi) is not None
 
@@ -24,24 +21,22 @@ valid_mask = raw_df["smiles"].apply(is_valid_smiles)
 filtered_df = raw_df[valid_mask].reset_index(drop=True)
 print(f" Valid SMILES retained: {len(filtered_df)} / {len(raw_df)}")
 
-# ------------------------------
+
 # Step 3: Convert to NumpyDataset
-# ------------------------------
+
 dataset = NumpyDataset(
     X=filtered_df["smiles"].values,
     y=filtered_df["label"].values,
     ids=filtered_df["smiles"].values
 )
 
-# ------------------------------
+
 # Step 4: Apply Scaffold Split
-# ------------------------------
 splitter = ScaffoldSplitter()
 train_dataset, valid_dataset, test_dataset = splitter.train_valid_test_split(dataset)
 
-# ------------------------------
+
 # Step 5: Convert SMILES → DeepSMILES
-# ------------------------------
 converter = Converter(rings=True, branches=True)
 
 from deepchem.data import NumpyDataset
@@ -86,3 +81,4 @@ pd.DataFrame({
 }).to_csv("bbbp_deepsmiles_data/test.csv", index=False)
 
 print("DeepSMILES dataset saved to `bbbp_deepsmiles_data/`")
+
