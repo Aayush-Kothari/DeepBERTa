@@ -1,27 +1,13 @@
 """Script for finetuning and evaluating pre-trained ChemBERTa models on MoleculeNet tasks.
 
-[classification]
-python finetune.py --datasets=bbbp --pretrained_model_name_or_path=DeepChem/ChemBERTa-SM-015
-
-[regression]
-python finetune.py --datasets=delaney --pretrained_model_name_or_path=DeepChem/ChemBERTa-SM-015
-
-[csv]
-python finetune.py --datasets=$HOME/finetune_datasets/logd/ \
-                --dataset_types=regression \
-                --pretrained_model_name_or_path=DeepChem/ChemBERTa-SM-015 \
-                --is_molnet=False
-
-[multiple]
-python finetune.py \
---datasets=bace_classification,bace_regression,bbbp,clearance,clintox,delaney,lipo,tox21 \
---pretrained_model_name_or_path=DeepChem/ChemBERTa-SM-015 \
---n_trials=20 \
---output_dir=finetuning_experiments \
---run_name=sm_015
-
-[from scratch (no pretraining)]
-python finetune.py --datasets=bbbp
+[classification] (example)
+python DeepBERTa_zinc_base_100k_v1_benchmark.py --dataset_types=classification
+                                                --pretrained_model_name_or_path=aakothari/DeepBERTa_zinc_base_100k_v1 
+                                                --is_molnet=False --output_dir=finetune_results 
+                                                --run_name=DeepBERTa_v1_BBBp_august1 
+                                                --n_seeds=3
+                                                --tokenizer_path=aakothari/DeepBERTa_zinc_base_100k_v1 
+                                                --datasets=bbbp_deepsmiles_data
 
 """
 import json
@@ -446,4 +432,5 @@ class FinetuneDataset(torch.utils.data.Dataset):
 
 
 if __name__ == "__main__":
+
     app.run(main)
