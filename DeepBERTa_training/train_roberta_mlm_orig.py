@@ -1,9 +1,6 @@
-""" Script for training a Roberta Masked-Language Model
+""" Script for training a Roberta Masked-Language Model for DeepSMILES
 
-Usage [SMILES tokenizer]:
-    python train_roberta_mlm.py --dataset_path=<DATASET_PATH> --output_dir=<OUTPUT_DIR> --run_name=<RUN_NAME> --tokenizer_type=smiles --tokenizer_path="seyonec/SMILES_tokenized_PubChem_shard00_160k"
-
-Usage [BPE tokenizer]:
+Usage [BPE tokenizer (DeepSMILES)]:
     python train_roberta_mlm.py --dataset_path=<DATASET_PATH> --output_dir=<OUTPUT_DIR> --run_name=<RUN_NAME> --tokenizer_type=bpe
 """
 import os
@@ -197,3 +194,4 @@ def main(argv):
 
 if __name__ == '__main__':
     app.run(main)
+
