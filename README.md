@@ -15,3 +15,4 @@ Cheminformatics is a field where computer science techniques are applied to solv
 
 ## Models 
  - Models can be found on HuggingFace under aakothari/
+                                            sourishr/
