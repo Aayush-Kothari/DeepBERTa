@@ -7,6 +7,7 @@ This repository contains scripts and resources for benchmarking molecular datase
 - Convert benchmark datasets from SMILES to DeepSMILES
 - Fine-tune ChemBERTa models on classification and regression tasks
 - Evaluate model performance across multiple datasets
+- Explore masking percentage and encoder depth in DeepSMILES-based CLMs.
 
 ## Project Background / Inspiration
 Project Name: Deep Learning for Molecule Understanding in Cheminformatics
